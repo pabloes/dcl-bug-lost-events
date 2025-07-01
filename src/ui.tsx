@@ -16,8 +16,15 @@ const state:any = {
     mouseBuffer:[]
 }
 
-engine.addSystem(() => {
+/*
+engine.addSystem(simulatePerformanceDrawback)
+function simulatePerformanceDrawback(){
+    const start = Date.now()
+    while (Date.now() < start + 300) {}
+}
+*/
 
+engine.addSystem(() => {
     if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN)) {
         state.keyBuffer.push("DOWN")
         while(state.keyBuffer.length > MAX_BUFFER_SIZE){
@@ -29,6 +36,7 @@ engine.addSystem(() => {
             state.keyBuffer.shift()
         }
     }
+
 })
 
 function getStreamText(stream:string[]){
